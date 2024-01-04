@@ -7,25 +7,69 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SafeArea(
         child: Scaffold(
-          body: Container(
-            height: double.infinity,
+          body: SizedBox(
             width: double.infinity,
-            color: Colors.transparent,
-            child: Column(
+            height: double.infinity,
+            child: Stack(
+              alignment: Alignment.center,
               children: [
-                Container(
-                  width: screensize(context).width,
-                  height: screensize(context).height * 0.15,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.2),
-                      borderRadius:
-                          BorderRadius.vertical(bottom: Radius.circular(15))),
-                  child: Image.asset('asset/images/worldSkills_logo.png', width: screensize(context).width * 0.7,),
+                Positioned(
+                  child: Container(
+                    height: screensize(context).height,
+                    width: screensize(context).width,
+                    color: Color(0xff080E1E),
+                  ),
                 ),
+                Positioned(
+                  top: 0,
+                  child: Container(
+                    width: screensize(context).width,
+                    height: screensize(context).height * 0.15,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Color(0xffEDECEA),
+                        borderRadius:
+                            BorderRadius.vertical(bottom: Radius.circular(25))),
+                    child: Image.asset(
+                      'asset/images/worldSkills_logo.png',
+                      width: screensize(context).width * 0.7,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: screensize(context).height * 0.3,
+                  child: Container(
+                    width: screensize(context).width * 0.7,
+                    height: screensize(context).height * 0.3,
+                    decoration: BoxDecoration(
+                      // borderRadius: BorderRadius.circular(9999),
+                      color: Colors.white.withOpacity(0.5),
+                      shape: BoxShape.circle,
+                    ),
+                    alignment: Alignment.center,
+                  ),
+                ),
+                Positioned(child: Image.asset(
+                  'asset/images/showTime_logo.png',
+                  alignment: Alignment.center,
+                  width: screensize(context).width * 0.5,
+                ),),
               ],
             ),
           ),
         ),
       );
 }
+
+// child: Stack(
+// children: [
+// Positioned(
+// height: screensize(context).height * 0.3,
+// child: Container(
+// decoration: BoxDecoration(
+// shape: BoxShape.circle,
+// color: Colors.white.withOpacity(0.3),
+// ),
+// )),
+// ],
+// ),
