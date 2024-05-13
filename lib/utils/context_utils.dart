@@ -5,7 +5,7 @@ extension IntExtension on int? {
     return this ?? value;
   }
 
-  Widget get KH => SizedBox(height: this?.toDouble());
-  Widget get KW => SizedBox(width: this?.toDouble());
+  Widget get sizeBoxHeight => SizedBox(height: this?.toDouble());
+  Widget get sizeBoxWidth => SizedBox(width: this?.toDouble());
 }
 
