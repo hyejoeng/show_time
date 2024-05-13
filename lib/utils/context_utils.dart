@@ -9,3 +9,5 @@ extension IntExtension on int? {
   Widget get sizeBoxWidth => SizedBox(width: this?.toDouble());
 }
 
+double screenSizeWidth(BuildContext context) => MediaQuery.sizeOf(context).width;
+double screenSizeHeight(BuildContext context) => MediaQuery.sizeOf(context).height;

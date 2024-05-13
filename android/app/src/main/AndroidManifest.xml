@@ -2,6 +2,7 @@
     <application
         android:label="show time"
         android:name="${applicationName}"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:icon="@mipmap/showtime_logo">
         <activity
             android:name=".MainActivity"

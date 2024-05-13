@@ -13,18 +13,12 @@ class _IntroScreenState extends State<IntroScreen> {
   @override
   void initState() {
     super.initState();
-
-
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: AnimatedOpacity(
-
-        ),
-      ),
+      child: Scaffold(body: Center(child: Text('intro screen'))),
     );
   }
 }
