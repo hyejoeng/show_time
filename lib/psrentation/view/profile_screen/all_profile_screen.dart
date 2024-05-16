@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:show_time/psrentation/view_model/main_tab_view_model.dart';
+import 'package:show_time/psrentation/view_model/profile_view_model.dart';
 
 class AllProfileScreen extends StatefulWidget {
-  const AllProfileScreen({super.key});
+  final MainTabViewModel mainTabViewModel;
+  final ProfileViewModel profileViewModel;
+
+  const AllProfileScreen({super.key, required this.mainTabViewModel, required this.profileViewModel});
 
   @override
   State<AllProfileScreen> createState() => _AllProfileScreenState();

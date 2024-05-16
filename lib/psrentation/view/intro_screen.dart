@@ -42,24 +42,23 @@ class _IntroScreenState extends State<IntroScreen> {
           if (widget.profileViewModel.profileList.isEmpty) {
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotProfileScreen()));
           } else {
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AllProfileScreen()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AllProfileScreen(mainTabViewModel: widget.mainTabViewModel, profileViewModel: widget.profileViewModel,)));
           }
         });
       }
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: AnimatedOpacity(
-          opacity: _opacity ? 0.0 : 0.1,
-          duration: Duration(seconds: 2),
-          child: SizedBox(
-            width: screenSizeWidth(context),
-            height: screenSizeHeight(context),
+        body: SizedBox(
+          width: screenSizeWidth(context),
+          height: screenSizeHeight(context),
+          child: AnimatedOpacity(
+            opacity: _opacity ? 0.0 : 1.0,
+            duration: Duration(seconds: 2),
             child: Stack(
               children: [
                 Positioned(
@@ -83,8 +82,10 @@ class _IntroScreenState extends State<IntroScreen> {
                     child: CircleAvatar(
                       backgroundColor: Colors.white.withOpacity(0.2),
                       maxRadius: screenSizeWidth(context) * 0.35,
-                      child: Image.asset('assets/showtime_logo.png',
-                          width: screenSizeWidth(context) * 0.5),
+                      child: Image.asset(
+                        'assets/showtime_logo.png',
+                        width: screenSizeWidth(context) * 0.5,
+                      ),
                     ),
                   ),
                 )
