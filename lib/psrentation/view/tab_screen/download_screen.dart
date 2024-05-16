@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:show_time/psrentation/view_model/main_tab_view_model.dart';
 
-import '../../../data/repository/network_check.dart';
+import '../../../data/repository/network_check_repository.dart';
 
 
 class DownloadScreen extends StatefulWidget {
@@ -25,9 +26,10 @@ class _DownloadScreenState extends State<DownloadScreen> {
     WidgetsBinding.instance.addPersistentFrameCallback((timeStamp) {
       widget.mainTabViewModel.addListener(updateScreen);
     });
-
-    // checkNetworkAndNavigate(context);
   }
+
+
+
 
 
   // void checkNetworkAndNavigate(BuildContext context) async {
@@ -49,9 +51,24 @@ class _DownloadScreenState extends State<DownloadScreen> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(body: Center(child: Text('다운로드 페이지')));
+    return SafeArea(
+      child: Scaffold(
+        body: Text('다운로드 페이지')
+      ),
+    );
   }
 
+  Widget _connectedWifi() => SizedBox(
 
+  );
+
+  Widget _noConnectedWifi() => SizedBox(
+    child: Center(
+      child: ElevatedButton(
+        onPressed: widget.mainTabViewModel.openWifiSettings,
+        child: Text('Open Wifi Settings'),
+      ),
+    ),
+  );
 
 }

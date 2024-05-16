@@ -5,7 +5,7 @@ import 'package:show_time/psrentation/view_model/main_tab_view_model.dart';
 import 'package:show_time/utils/color.dart';
 
 import 'data/repository/moive_repository.dart';
-import 'data/repository/network_check.dart';
+import 'data/repository/network_check_repository.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,11 +18,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final mainTabViewModel = MainTabViewModel(movieRepository: MovieRepository());
 
-    NetworkCheck.isConnected.then((isConnected) {
+    NetworkCheckRepository.isConnected.then((isConnected) {
       if (isConnected) {
-        print("네트워크에 연결되어 있습니다.");
+        print("네트워크에 연결되어 있습니다");
       } else {
-        print("네트워크에 연결되어 있지 않습니다.");
+        print("네트워크에 연결되어 있지 않습니다");
       }
     });
 
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: DownloadScreen(mainTabViewModel: mainTabViewModel,),
+      home: DownloadScreen(mainTabViewModel: mainTabViewModel),
     );
   }
 }

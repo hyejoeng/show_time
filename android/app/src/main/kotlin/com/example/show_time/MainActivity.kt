@@ -2,7 +2,9 @@ package com.example.show_time
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.WindowManager
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -22,8 +24,17 @@ class MainActivity: FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler {
                 call, result ->
-            if (call.method == "isConnected") {
-                result.success(isNetworkAvailable())
+            when (call.method) {
+                "isConnected" -> {
+                    result.success(isNetworkAvailable())
+                }
+                "openWifiSettings" -> {
+                    openWifiSettings()
+                    result.success("Wifi Settings Opened")
+                }
+                else -> {
+                    result.notImplemented()
+                }
             }
         }
     }
@@ -33,4 +44,11 @@ class MainActivity: FlutterActivity() {
         val activeNetworkInfo = connectivityManager.activeNetworkInfo
         return activeNetworkInfo != null && activeNetworkInfo.isConnected
     }
+
+    private fun openWifiSettings() {
+        startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
+    }
+
+
+
 }
