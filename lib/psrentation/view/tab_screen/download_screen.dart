@@ -60,7 +60,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(Icons.wifi_off),
+              Icon(Icons.wifi_off, color: Colors.white,),
               Text('WIFI가 꺼져 있습니다.'),
               Text('WIFI 연결 후 이용해주세요.'),
               ElevatedButton(
