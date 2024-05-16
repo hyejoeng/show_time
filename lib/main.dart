@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:show_time/data/repository/profile_reposotory.dart';
 import 'package:show_time/psrentation/view/intro_screen.dart';
 import 'package:show_time/psrentation/view/tab_screen/download_screen.dart';
 import 'package:show_time/psrentation/view_model/main_tab_view_model.dart';
+import 'package:show_time/psrentation/view_model/profile_view_model.dart';
 import 'package:show_time/utils/color.dart';
 
 import 'data/repository/moive_repository.dart';
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mainTabViewModel = MainTabViewModel(movieRepository: MovieRepository(), networkCheckRepository: NetworkCheckRepository());
+    final profileViewModel = ProfileViewModel(profileRepository: ProfileRepository());
 
     return MaterialApp(
       theme: ThemeData(
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: DownloadScreen(mainTabViewModel: mainTabViewModel),
+      home: IntroScreen(profileViewModel: profileViewModel, mainTabViewModel: mainTabViewModel),
     );
   }
 }
