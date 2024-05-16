@@ -16,15 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mainTabViewModel = MainTabViewModel(movieRepository: MovieRepository());
-
-    NetworkCheckRepository.isConnected.then((isConnected) {
-      if (isConnected) {
-        print("네트워크에 연결되어 있습니다");
-      } else {
-        print("네트워크에 연결되어 있지 않습니다");
-      }
-    });
+    final mainTabViewModel = MainTabViewModel(movieRepository: MovieRepository(), networkCheckRepository: NetworkCheckRepository());
 
     return MaterialApp(
       theme: ThemeData(

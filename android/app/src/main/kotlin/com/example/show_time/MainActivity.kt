@@ -48,7 +48,4 @@ class MainActivity: FlutterActivity() {
     private fun openWifiSettings() {
         startActivity(Intent(Settings.ACTION_WIFI_SETTINGS))
     }
-
-
-
 }

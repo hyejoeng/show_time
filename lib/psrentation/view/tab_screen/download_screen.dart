@@ -17,6 +17,7 @@ class DownloadScreen extends StatefulWidget {
 }
 
 class _DownloadScreenState extends State<DownloadScreen> {
+
   void updateScreen() => setState(() {});
 
   @override
@@ -24,51 +25,50 @@ class _DownloadScreenState extends State<DownloadScreen> {
     super.initState();
 
     WidgetsBinding.instance.addPersistentFrameCallback((timeStamp) {
+      widget.mainTabViewModel.updateConnected();
+
       widget.mainTabViewModel.addListener(updateScreen);
     });
   }
 
-
-
-
-
-  // void checkNetworkAndNavigate(BuildContext context) async {
-  //   bool isConnected = await NetworkCheck.isNetworkConnected();
-  //
-  //   if (isConnected) {
-  //     Navigator.push(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => Scaffold(body: Center(child: Text('네트워크 연결 됨')),)),
-  //     );
-  //   } else {
-  //     Navigator.push(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => Scaffold(body: Center(child: Text('네트워크 연결 안됨')),)),
-  //     );
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
+    final bool isConnected = widget.mainTabViewModel.isConnected;
 
     return SafeArea(
       child: Scaffold(
-        body: Text('다운로드 페이지')
+        body: isConnected ? _connectedWifi() : _noConnectedWifi(),
       ),
     );
   }
 
-  Widget _connectedWifi() => SizedBox(
+  Widget _connectedWifi() => SizedBox.expand(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('다운로드 가능한 영화가 없습니다.'),
+              Text('다운로드 등록 후 이용하세요.'),
+            ],
+          ),
+        ),
+      );
 
-  );
-
-  Widget _noConnectedWifi() => SizedBox(
-    child: Center(
-      child: ElevatedButton(
-        onPressed: widget.mainTabViewModel.openWifiSettings,
-        child: Text('Open Wifi Settings'),
-      ),
-    ),
-  );
-
+  Widget _noConnectedWifi() => SizedBox.expand(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(Icons.wifi_off),
+              Text('WIFI가 꺼져 있습니다.'),
+              Text('WIFI 연결 후 이용해주세요.'),
+              ElevatedButton(
+                onPressed: widget.mainTabViewModel.openWifiSettings,
+                child: Text('WIFI 설정하기'),
+              ),
+            ],
+          ),
+        ),
+      );
 }
